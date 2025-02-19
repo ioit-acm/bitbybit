@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bit by Bit Vol 2</title>
+    <style>
+      body {
+        font-family: monospace;
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+		margin-bottom: 100px;
+		margin-top: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .problem {
+        background: white;
+        padding: 10px;
+        margin-bottom: 40px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      details {
+        margin-top: 10px;
+      }
+      summary {
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+      }
+      pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 10px;
+        overflow-x: auto;
+        border-radius: 5px;
+      }
+      code {
+        font-family: monospace;
+      }
+	  hr{
+		  margin: 20px 0;
+	  }
+    </style>
+  </head>
+  <body>
+    <h1>Bit by Bit Vol 2</h1>
+
+    <p><strong>Prize Pool:</strong> ₹5000</p>
+    <p><strong>Date:</strong> February 20 2025</p>
+	<p><strong>Questions:</strong> 9</p>
+	<p><strong>Time:</strong> 2 Hours</p>
+	<p><strong>Host:</strong> <a href="https://adimail.github.io">Aditya Godse</a></p>
+	<a href="/bitbybit">home</a>
+
+	<hr/>
+
+    <div class="problem">
+      <h2>Lexicographically Smallest Palindrome</h2>
+      <p>
+        Given a string <b>s</b>, transform it into the
+        <b>lexicographically smallest palindrome</b> by replacing characters in
+        the string. You can only replace characters such that the resulting
+        string is a palindrome.
+      </p>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>A single line containing string <b>s</b> of length <b>n</b>.</li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>
+          A single string, the <b>lexicographically smallest palindrome</b>
+          possible.
+        </li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>1 ≤ n ≤ 1000</b></li>
+        <li><b>s</b> consists of lowercase English letters only.</li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>bcaacb</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>abccba</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <string>
+using namespace std;
+
+string makeSmallestPalindrome(string s) {
+    int n = s.length();
+    for (int i = 0; i < n / 2; ++i) {
+        if (s[i] != s[n - i - 1]) {
+            s[i] = s[n - i - 1] = min(s[i], s[n - i - 1]);
+        }
+    }
+    return s;
+}
+
+int main() {
+    string s;
+    cin >> s;
+    cout << makeSmallestPalindrome(s) << endl;
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+    <div class="problem">
+      <h2>Remove Duplicates from Sorted Array</h2>
+      <p>
+        Given a <b>sorted</b> integer array, remove duplicate elements
+        <b>in-place</b>, so that each element appears <b>only once</b>. Return
+        the updated array <b>without extra space</b>.
+      </p>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>First line: Integer <b>n</b> (size of the array).</li>
+        <li>Second line: <b>n</b> space-separated integers (sorted array).</li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>
+          The modified array <b>without duplicates</b>, maintaining the original
+          order.
+        </li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>1 ≤ n ≤ 10^4</b></li>
+        <li><b>-10^4 ≤ arr[i] ≤ 10^4</b></li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>6
+1 1 2 2 3 3</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>1 2 3</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int removeDuplicates(vector<int>& nums) {
+    if (nums.empty()) return 0;
+    int index = 1;
+    for (int i = 1; i < nums.size(); ++i) {
+        if (nums[i] != nums[i - 1]) {
+            nums[index++] = nums[i];
+        }
+    }
+    return index;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> nums(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> nums[i];
+    }
+    int newLength = removeDuplicates(nums);
+    for (int i = 0; i < newLength; ++i) {
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+    <div class="problem">
+      <h2>Intersection of Two Arrays</h2>
+      <p>
+        Given two arrays, return the <b>intersection</b> of the arrays (i.e.,
+        common elements <b>without duplicates</b>).
+      </p>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>First line: Integer <b>n</b> (size of array1).</li>
+        <li>Second line: <b>n</b> space-separated integers (array1).</li>
+        <li>Third line: Integer <b>m</b> (size of array2).</li>
+        <li>Fourth line: <b>m</b> space-separated integers (array2).</li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>
+          Space-separated integers representing the intersection of the arrays
+          in
+          <b>any order</b>.
+        </li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>1 ≤ n, m ≤ 1000</b></li>
+        <li><b>-10^4 ≤ arr[i] ≤ 10^4</b></li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>4
+1 2 3 4
+4
+3 4 5 6</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>3 4</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+using namespace std;
+
+vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+    unordered_set<int> set1(nums1.begin(), nums1.end());
+    unordered_set<int> resultSet;
+    for (int num : nums2) {
+        if (set1.count(num)) {
+            resultSet.insert(num);
+        }
+    }
+    return vector<int>(resultSet.begin(), resultSet.end());
+}
+
+int main() {
+    int n, m;
+    cin >> n;
+    vector<int> nums1(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> nums1[i];
+    }
+    cin >> m;
+    vector<int> nums2(m);
+    for (int i = 0; i < m; ++i) {
+        cin >> nums2[i];
+    }
+    vector<int> result = intersection(nums1, nums2);
+    for (int num : result) {
+        cout << num << " ";
+    }
+    cout << endl;
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+    <div class="problem">
+      <h2>Move Zeros to End</h2>
+      <p>
+        Given an integer array <b>nums</b>, move all <b>0’s</b> to the end while
+        maintaining the relative order of the <b>non-zero</b> elements.
+      </p>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>First line: Integer <b>n</b> (size of the array).</li>
+        <li>Second line: <b>n</b> space-separated integers.</li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>The modified array with all <b>zeroes</b> at the end.</li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>1 ≤ n ≤ 10^4</b></li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>6
+0 3 0 5 2 0</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>3 5 2 0 0 0</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void moveZeroes(vector<int>& nums) {
+    int index = 0;
+    for (int num : nums) {
+        if (num != 0) {
+            nums[index++] = num;
+        }
+    }
+    while (index < nums.size()) {
+        nums[index++] = 0;
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> nums(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> nums[i];
+    }
+    moveZeroes(nums);
+    for (int num : nums) {
+        cout << num << " ";
+    }
+    cout << endl;
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+    <div class="problem">
+      <h2>Merge Two Sorted Lists</h2>
+      <p>
+        Given two <b>sorted</b> arrays, merge them into one <b>sorted</b> array.
+      </p>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>First line: Integer <b>n</b> (size of array1).</li>
+        <li>Second line: <b>n</b> space-separated integers (sorted).</li>
+        <li>Third line: Integer <b>m</b> (size of array2).</li>
+        <li>Fourth line: <b>m</b> space-separated integers (sorted).</li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>A <b>single sorted array</b>.</li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>0 ≤ n, m ≤ 50</b></li>
+        <li><b>-100 ≤ arr[i] ≤ 100</b></li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>3
+1 3 5
+4
+2 4 6 8</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>1 2 3 4 5 6 8</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> mergeSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    vector<int> result;
+    int i = 0, j = 0;
+    while (i < nums1.size() && j < nums2.size()) {
+        if (nums1[i] < nums2[j]) {
+            result.push_back(nums1[i++]);
+        } else {
+            result.push_back(nums2[j++]);
+        }
+    }
+    while (i < nums1.size()) {
+        result.push_back(nums1[i++]);
+    }
+    while (j < nums2.size()) {
+        result.push_back(nums2[j++]);
+    }
+    return result;
+}
+
+int main() {
+    int n, m;
+    cin >> n;
+    vector<int> nums1(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> nums1[i];
+    }
+    cin >> m;
+    vector<int> nums2(m);
+    for (int i = 0; i < m; ++i) {
+        cin >> nums2[i];
+    }
+    vector<int> result = mergeSortedArrays(nums1, nums2);
+    for (int num : result) {
+        cout << num << " ";
+    }
+    cout << endl;
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+    <div class="problem">
+      <h2>Matrix Multiplication</h2>
+      <p>
+        Given two matrices <b>A</b> and <b>B</b>, multiply them if
+        multiplication is <b>possible</b>.
+      </p>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>First line: Integers <b>n1 m1</b> (dimensions of matrix A).</li>
+        <li>
+          Next <b>n1</b> lines: Each contains <b>m1</b> space-separated
+          integers.
+        </li>
+        <li>Next line: Integers <b>n2 m2</b> (dimensions of matrix B).</li>
+        <li>
+          Next <b>n2</b> lines: Each contains <b>m2</b> space-separated
+          integers.
+        </li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>The resulting matrix <b>if multiplication is possible</b>.</li>
+        <li>Otherwise, print <code>"Not Possible"</code>.</li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>1 ≤ n1, m1, n2, m2 ≤ 100</b></li>
+        <li><b>-100 ≤ matrix elements ≤ 100</b></li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>2 3
+1 2 3
+4 5 6
+3 2
+7 8
+9 10
+11 12</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>58 64
+139 154</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<vector<int>> multiplyMatrices(vector<vector<int>>& A, vector<vector<int>>& B) {
+    int n1 = A.size(), m1 = A[0].size(), n2 = B.size(), m2 = B[0].size();
+    if (m1 != n2) return {};
+    vector<vector<int>> result(n1, vector<int>(m2, 0));
+    for (int i = 0; i < n1; ++i) {
+        for (int j = 0; j < m2; ++j) {
+            for (int k = 0; k < m1; ++k) {
+                result[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+    return result;
+}
+
+int main() {
+    int n1, m1, n2, m2;
+    cin >> n1 >> m1;
+    vector<vector<int>> A(n1, vector<int>(m1));
+    for (int i = 0; i < n1; ++i) {
+        for (int j = 0; j < m1; ++j) {
+            cin >> A[i][j];
+        }
+    }
+    cin >> n2 >> m2;
+    vector<vector<int>> B(n2, vector<int>(m2));
+    for (int i = 0; i < n2; ++i) {
+        for (int j = 0; j < m2; ++j) {
+            cin >> B[i][j];
+        }
+    }
+    if (m1 != n2) {
+        cout << "Not Possible" << endl;
+    } else {
+        vector<vector<int>> result = multiplyMatrices(A, B);
+        for (const auto& row : result) {
+            for (int val : row) {
+                cout << val << " ";
+            }
+            cout << endl;
+        }
+    }
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+    <div class="problem">
+      <h2>Valid Parentheses</h2>
+      <p>
+        Given a string containing <b>only</b> <code>()</code>, <code>{}</code>,
+        and <code>[]</code>, check if it is <b>balanced</b>.
+      </p>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>A <b>single string s</b> containing only the given brackets.</li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>
+          Print <code>"yes"</code> if balanced, otherwise <code>"no"</code>.
+        </li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>1 ≤ s.length ≤ 1000</b></li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>()[]{}</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>yes</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <stack>
+using namespace std;
+
+bool isValid(string s) {
+    stack<char> stk;
+    for (char c : s) {
+        if (c == '(' || c == '{' || c == '[') {
+            stk.push(c);
+        } else {
+            if (stk.empty()) return false;
+            char top = stk.top();
+            if ((c == ')' && top != '(') || (c == '}' && top != '{') || (c == ']' && top != '[')) {
+                return false;
+            }
+            stk.pop();
+        }
+    }
+    return stk.empty();
+}
+
+int main() {
+    string s;
+    cin >> s;
+    cout << (isValid(s) ? "yes" : "no") << endl;
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+    <div class="problem">
+      <h2>Collatz Sequence Simulation</h2>
+      <p>Simulate the <b>Collatz sequence</b>:</p>
+      <ul>
+        <li>If <b>n</b> is <b>even</b>, divide it by 2.</li>
+        <li>If <b>n</b> is <b>odd</b>, multiply it by 3 and add 1.</li>
+        <li>Repeat until <b>n = 1</b>.</li>
+      </ul>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>A single integer <b>n</b>.</li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>The sequence of numbers until <b>n = 1</b>.</li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>1 ≤ n ≤ 10^6</b></li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>3</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>3 10 5 16 8 4 2 1</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> collatzSequence(int n) {
+    vector<int> sequence;
+    while (n != 1) {
+        sequence.push_back(n);
+        if (n % 2 == 0) {
+            n /= 2;
+        } else {
+            n = 3 * n + 1;
+        }
+    }
+    sequence.push_back(1);
+    return sequence;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> sequence = collatzSequence(n);
+    for (int num : sequence) {
+        cout << num << " ";
+    }
+    cout << endl;
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+    <div class="problem">
+      <h2>Longest Repetition in a DNA Sequence</h2>
+      <p>
+        Given a DNA sequence (a string composed of <code>A, C, G, T</code>),
+        find the <b>length of the longest contiguous repetition</b>.
+      </p>
+      <p><b>Input Format:</b></p>
+      <ul>
+        <li>A <b>single string</b> containing <b>n</b> characters.</li>
+      </ul>
+      <p><b>Output Format:</b></p>
+      <ul>
+        <li>
+          A <b>single integer</b> representing the length of the longest
+          repetition.
+        </li>
+      </ul>
+      <p><b>Constraints:</b></p>
+      <ul>
+        <li><b>1 ≤ n ≤ 10^6</b></li>
+      </ul>
+      <p><b>Sample Test Case:</b></p>
+      <p><b>Input:</b></p>
+      <pre><code>ATTCGGGA</code></pre>
+      <p><b>Output:</b></p>
+      <pre><code>3</code></pre>
+      <details>
+        <summary>Click to view solution</summary>
+        <pre><code>// C++ Solution
+#include <iostream>
+#include <string>
+using namespace std;
+
+int longestRepetition(string s) {
+    int maxLen = 1, currentLen = 1;
+    for (int i = 1; i < s.length(); ++i) {
+        if (s[i] == s[i - 1]) {
+            currentLen++;
+            maxLen = max(maxLen, currentLen);
+        } else {
+            currentLen = 1;
+        }
+    }
+    return maxLen;
+}
+
+int main() {
+    string s;
+    cin >> s;
+    cout << longestRepetition(s) << endl;
+    return 0;
+}
+        </code></pre>
+      </details>
+    </div>
+
+	<hr/>
+
+	<center>Designed and maintained by <a target="_blank" href="https://ioit.acm.org/team?domain=web">IOIT ACM Web team</a> </center>
+  </body>
+</html>
