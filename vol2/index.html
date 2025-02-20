@@ -13,7 +13,12 @@
     <p><strong>Date:</strong> February 20 2025</p>
 	<p><strong>Questions:</strong> 9</p>
 	<p><strong>Time:</strong> 2 Hours</p>
-	<p><strong>Host:</strong> <a href="https://adimail.github.io">Aditya Godse</a></p>
+	<p><strong>Event Head(s):</strong> <a href="https://adimail.github.io">Aditya Godse</a> & Pratiksha Aghav</p>
+
+	<p>View all solutions on <a href="https://github.com/adimail/bitbybit/tree/master/vol2/solutions/cpp">GitHub</a>.</p>
+
+	<br/>
+
 	<a href="/bitbybit">home</a>
 
 	<hr/>
@@ -48,10 +53,10 @@
       <p><b>Output:</b></p>
       <pre><code>abccba</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <string>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
 using namespace std;
 
 string makeSmallestPalindrome(string s) {
@@ -70,6 +75,22 @@ int main() {
     cout << makeSmallestPalindrome(s) << endl;
     return 0;
 }
+        </code></pre>
+      </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def make_smallest_palindrome(s):
+    s = list(s)
+    n = len(s)
+    for i in range(n // 2):
+        if s[i] != s[n - i - 1]:
+            s[i] = s[n - i - 1] = min(s[i], s[n - i - 1])
+    return ''.join(s)
+
+if __name__ == "__main__":
+    s = input().strip()
+    print(make_smallest_palindrome(s))
         </code></pre>
       </details>
     </div>
@@ -105,13 +126,13 @@ int main() {
       <p><b>Output:</b></p>
       <pre><code>1 2 3</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <vector>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
 using namespace std;
 
-int removeDuplicates(vector<int>& nums) {
+int removeDuplicates(vector&lt;int&gt;& nums) {
     if (nums.empty()) return 0;
     int index = 1;
     for (int i = 1; i < nums.size(); ++i) {
@@ -125,7 +146,7 @@ int removeDuplicates(vector<int>& nums) {
 int main() {
     int n;
     cin >> n;
-    vector<int> nums(n);
+    vector&lt;int&gt; nums(n);
     for (int i = 0; i < n; ++i) {
         cin >> nums[i];
     }
@@ -136,6 +157,26 @@ int main() {
     cout << endl;
     return 0;
 }
+        </code></pre>
+      </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def remove_duplicates(nums):
+    if not nums:
+        return 0
+    index = 1
+    for i in range(1, len(nums)):
+        if nums[i] != nums[i - 1]:
+            nums[index] = nums[i]
+            index += 1
+    return index
+
+if __name__ == "__main__":
+    n = int(input().strip())
+    nums = list(map(int, input().strip().split()))
+    new_length = remove_duplicates(nums)
+    print(" ".join(map(str, nums[:new_length])))
         </code></pre>
       </details>
     </div>
@@ -175,43 +216,60 @@ int main() {
       <p><b>Output:</b></p>
       <pre><code>3 4</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <vector>
-#include <unordered_set>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_set&gt;
 using namespace std;
 
-vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-    unordered_set<int> set1(nums1.begin(), nums1.end());
-    unordered_set<int> resultSet;
+vector&lt;int&gt; intersection(vector&lt;int&gt;& nums1, vector&lt;int&gt;& nums2) {
+    unordered_set&lt;int&gt; set1(nums1.begin(), nums1.end());
+    unordered_set&lt;int&gt; resultSet;
     for (int num : nums2) {
         if (set1.count(num)) {
             resultSet.insert(num);
         }
     }
-    return vector<int>(resultSet.begin(), resultSet.end());
+    return vector&lt;int&gt;(resultSet.begin(), resultSet.end());
 }
 
 int main() {
     int n, m;
     cin >> n;
-    vector<int> nums1(n);
+    vector&lt;int&gt; nums1(n);
     for (int i = 0; i < n; ++i) {
         cin >> nums1[i];
     }
     cin >> m;
-    vector<int> nums2(m);
+    vector&lt;int&gt; nums2(m);
     for (int i = 0; i < m; ++i) {
         cin >> nums2[i];
     }
-    vector<int> result = intersection(nums1, nums2);
+    vector&lt;int&gt; result = intersection(nums1, nums2);
     for (int num : result) {
         cout << num << " ";
     }
     cout << endl;
     return 0;
 }
+        </code></pre>
+      </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def intersection(nums1, nums2):
+    set1 = set(nums1)
+    result_set = {num for num in nums2 if num in set1}
+    return list(result_set)
+
+if __name__ == "__main__":
+    n = int(input().strip())
+    nums1 = list(map(int, input().strip().split()))
+    m = int(input().strip())
+    nums2 = list(map(int, input().strip().split()))
+    result = intersection(nums1, nums2)
+    print(" ".join(map(str, result)))
         </code></pre>
       </details>
     </div>
@@ -242,13 +300,13 @@ int main() {
       <p><b>Output:</b></p>
       <pre><code>3 5 2 0 0 0</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <vector>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
 using namespace std;
 
-void moveZeroes(vector<int>& nums) {
+void moveZeroes(vector&lt;int&gt;& nums) {
     int index = 0;
     for (int num : nums) {
         if (num != 0) {
@@ -263,7 +321,7 @@ void moveZeroes(vector<int>& nums) {
 int main() {
     int n;
     cin >> n;
-    vector<int> nums(n);
+    vector&lt;int&gt; nums(n);
     for (int i = 0; i < n; ++i) {
         cin >> nums[i];
     }
@@ -274,6 +332,26 @@ int main() {
     cout << endl;
     return 0;
 }
+        </code></pre>
+      </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def move_zeroes(nums):
+    index = 0
+    for num in nums:
+        if num != 0:
+            nums[index] = num
+            index += 1
+    while index < len(nums):
+        nums[index] = 0
+        index += 1
+
+if __name__ == "__main__":
+    n = int(input().strip())
+    nums = list(map(int, input().strip().split()))
+    move_zeroes(nums)
+    print(" ".join(map(str, nums)))
         </code></pre>
       </details>
     </div>
@@ -308,14 +386,14 @@ int main() {
       <p><b>Output:</b></p>
       <pre><code>1 2 3 4 5 6 8</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <vector>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
 using namespace std;
 
-vector<int> mergeSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-    vector<int> result;
+vector&lt;int&gt; mergeSortedArrays(vector&lt;int&gt;& nums1, vector&lt;int&gt;& nums2) {
+    vector&lt;int&gt; result;
     int i = 0, j = 0;
     while (i < nums1.size() && j < nums2.size()) {
         if (nums1[i] < nums2[j]) {
@@ -336,22 +414,48 @@ vector<int> mergeSortedArrays(vector<int>& nums1, vector<int>& nums2) {
 int main() {
     int n, m;
     cin >> n;
-    vector<int> nums1(n);
+    vector&lt;int&gt; nums1(n);
     for (int i = 0; i < n; ++i) {
         cin >> nums1[i];
     }
     cin >> m;
-    vector<int> nums2(m);
+    vector&lt;int&gt; nums2(m);
     for (int i = 0; i < m; ++i) {
         cin >> nums2[i];
     }
-    vector<int> result = mergeSortedArrays(nums1, nums2);
+    vector&lt;int&gt; result = mergeSortedArrays(nums1, nums2);
     for (int num : result) {
         cout << num << " ";
     }
     cout << endl;
     return 0;
 }
+        </code></pre>
+      </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def merge_sorted_arrays(nums1, nums2):
+    result = []
+    i, j = 0, 0
+    while i < len(nums1) and j < len(nums2):
+        if nums1[i] < nums2[j]:
+            result.append(nums1[i])
+            i += 1
+        else:
+            result.append(nums2[j])
+            j += 1
+    result.extend(nums1[i:])
+    result.extend(nums2[j:])
+    return result
+
+if __name__ == "__main__":
+    n = int(input().strip())
+    nums1 = list(map(int, input().strip().split()))
+    m = int(input().strip())
+    nums2 = list(map(int, input().strip().split()))
+    result = merge_sorted_arrays(nums1, nums2)
+    print(" ".join(map(str, result)))
         </code></pre>
       </details>
     </div>
@@ -398,10 +502,10 @@ int main() {
       <pre><code>58 64
 139 154</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <vector>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
 using namespace std;
 
 vector<vector<int>> multiplyMatrices(vector<vector<int>>& A, vector<vector<int>>& B) {
@@ -449,6 +553,34 @@ int main() {
 }
         </code></pre>
       </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def multiply_matrices(A, B):
+    n1, m1 = len(A), len(A[0])
+    n2, m2 = len(B), len(B[0])
+    if m1 != n2:
+        return "Not Possible"
+    result = [[0] * m2 for _ in range(n1)]
+    for i in range(n1):
+        for j in range(m2):
+            for k in range(m1):
+                result[i][j] += A[i][k] * B[k][j]
+    return result
+
+if __name__ == "__main__":
+    n1, m1 = map(int, input().strip().split())
+    A = [list(map(int, input().strip().split())) for _ in range(n1)]
+    n2, m2 = map(int, input().strip().split())
+    B = [list(map(int, input().strip().split())) for _ in range(n2)]
+    result = multiply_matrices(A, B)
+    if result == "Not Possible":
+        print(result)
+    else:
+        for row in result:
+            print(" ".join(map(str, row)))
+        </code></pre>
+      </details>
     </div>
 
     <div class="problem">
@@ -477,10 +609,10 @@ int main() {
       <p><b>Output:</b></p>
       <pre><code>yes</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <stack>
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
 using namespace std;
 
 bool isValid(string s) {
@@ -506,6 +638,26 @@ int main() {
     cout << (isValid(s) ? "yes" : "no") << endl;
     return 0;
 }
+        </code></pre>
+      </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def is_valid(s):
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+    for char in s:
+        if char in mapping:
+            top_element = stack.pop() if stack else '#'
+            if mapping[char] != top_element:
+                return "no"
+        else:
+            stack.append(char)
+    return "yes" if not stack else "no"
+
+if __name__ == "__main__":
+    s = input().strip()
+    print(is_valid(s))
         </code></pre>
       </details>
     </div>
@@ -536,14 +688,14 @@ int main() {
       <p><b>Output:</b></p>
       <pre><code>3 10 5 16 8 4 2 1</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <vector>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
 using namespace std;
 
-vector<int> collatzSequence(int n) {
-    vector<int> sequence;
+vector&lt;int&gt; collatzSequence(int n) {
+    vector&lt;int&gt; sequence;
     while (n != 1) {
         sequence.push_back(n);
         if (n % 2 == 0) {
@@ -559,13 +711,33 @@ vector<int> collatzSequence(int n) {
 int main() {
     int n;
     cin >> n;
-    vector<int> sequence = collatzSequence(n);
+    vector&lt;int&gt; sequence = collatzSequence(n);
     for (int num : sequence) {
         cout << num << " ";
     }
     cout << endl;
     return 0;
 }
+        </code></pre>
+      </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def collatz_sequence(n):
+    sequence = []
+    while n != 1:
+        sequence.append(n)
+        if n % 2 == 0:
+            n //= 2
+        else:
+            n = 3 * n + 1
+    sequence.append(1)
+    return sequence
+
+if __name__ == "__main__":
+    n = int(input().strip())
+    sequence = collatz_sequence(n)
+    print(" ".join(map(str, sequence)))
         </code></pre>
       </details>
     </div>
@@ -597,10 +769,10 @@ int main() {
       <p><b>Output:</b></p>
       <pre><code>3</code></pre>
       <details>
-        <summary>Click to view solution</summary>
+        <summary>C++ Solution</summary>
         <pre><code>// C++ Solution
-#include <iostream>
-#include <string>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
 using namespace std;
 
 int longestRepetition(string s) {
@@ -624,9 +796,32 @@ int main() {
 }
         </code></pre>
       </details>
+      <details>
+        <summary>Python3 Solution</summary>
+        <pre><code># Python Solution
+def longest_repetition(s):
+    max_len = 1
+    current_len = 1
+    for i in range(1, len(s)):
+        if s[i] == s[i - 1]:
+            current_len += 1
+            max_len = max(max_len, current_len)
+        else:
+            current_len = 1
+    return max_len
+
+if __name__ == "__main__":
+    s = input().strip()
+    print(longest_repetition(s))
+        </code></pre>
+      </details>
     </div>
 
 	<hr/>
+
+	<center>If you find any issues feel free to open an <a href="https://github.com/adimail/bitbybit/issues">issue</a> on gitHub or create a <a href="https://github.com/adimail/bitbybit">pull request</a> for a fix.</center>
+
+	<br/>
 
 	<center>Designed and maintained by <a target="_blank" href="https://ioit.acm.org/team?domain=web">IOIT ACM Web team</a> </center>
   </body>
